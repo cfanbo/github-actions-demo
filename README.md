@@ -33,9 +33,9 @@ GitHub Actions 相关的术语。
 ## 二、在部署服务器上生成部署用户密钥
 部署时需要用到用户的私钥，所以先登录到部署服务器获取私钥，这里为了方便，单独创建了一对公钥和公钥，
 
-
-<code>$ cd ~/.ssh</code>
-<code>$ ssh-keygen</**code**>
+```
+$ cd ~/.ssh
+$ ssh-keygen
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa): /root/.ssh/id_rsa_actions
 Enter passphrase (empty for no passphrase):
@@ -57,13 +57,19 @@ The key's randomart image is:
 |  .+O=   ooo .+. |
 +----[SHA256]-----+
 
+```
+
 这里为部署单独生成了一对公钥和私钥，私钥路径为 /root/.ssh/id_rsa_actions
 
 将公钥保存到 authorized_keys 文件中
-<code>$ cat id_rsa_actions.pub >> authorized_keys</code>
+```
+$ cat id_rsa_actions.pub >> authorized_keys
+```
 
 查看私钥内容，后面需要用到，先将内容保存起来
-<code>$ cat id_rsa_actions</code>
+```
+$ cat id_rsa_actions
+```
 
 ## 三、准备工作
 对于服务的部署所以这里选择了 ssh-deploy 这一个actioins，官方网址 https://github.com/marketplace/actions/ssh-deploy。
@@ -84,7 +90,9 @@ ARGS (可选项)默认值为 -rltgoDzvO
 
 ## 四、上传代码到github远程仓库
 我们这里定义了当master分支发生push操作时就触发一系列workflow操作。
-<code>$git push origin master</code>
+```
+$git push origin master
+```
 这时我们可以在 https://github.com/cfanbo/github-actions-demo/actions 页面看到当前项目的构建情况。
 
 ## 四、测试
